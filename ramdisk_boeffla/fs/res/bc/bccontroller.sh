@@ -35,12 +35,12 @@ RECOVERY_DEVICE="/dev/block/bootdevice/by-name/recovery"
 # *******************
 
 if [ "lov_gov_profiles" == "$1" ]; then
-	echo "interactive - battery;interactive - battery extreme;interactive - performance;zzmoove - optimal;zzmoove - battery;zzmoove - battery plus;zzmoove - battery yank;zzmoove - battery extreme yank;zzmoove - performance;zzmoove - insane;zzmoove - moderate;zzmoove - game;zzmoove - relax"
+#	echo "interactive - battery;interactive - battery extreme;interactive - performance"
 	exit 0
 fi
 
 if [ "lov_gov_profiles_2" == "$1" ]; then
-	echo "interactive - battery;interactive - battery extreme;interactive - performance"
+#	echo "interactive - battery;interactive - battery extreme;interactive - performance"
 	exit 0
 fi
 
@@ -640,51 +640,6 @@ if [ "apply_governor_profile" == "$1" ]; then
 		busybox sync
 	fi
 
-	if [ "intelliactive - standard" == "$2" ]; then
-		echo "20000" > /sys/devices/system/cpu/cpufreq/intelliactive/above_hispeed_delay 
-		echo "0" > /sys/devices/system/cpu/cpufreq/intelliactive/boost
-		echo "" > /sys/devices/system/cpu/cpufreq/intelliactive/boostpulse
-		echo "80000" > /sys/devices/system/cpu/cpufreq/intelliactive/boostpulse_duration
-		echo "99" > /sys/devices/system/cpu/cpufreq/intelliactive/go_hispeed_load
-		echo "1555200" > /sys/devices/system/cpu/cpufreq/intelliactive/hispeed_freq
-		echo "1" > /sys/devices/system/cpu/cpufreq/intelliactive/io_is_busy
-		echo "80000" > /sys/devices/system/cpu/cpufreq/intelliactive/min_sample_time
-		echo "0" > /sys/devices/system/cpu/cpufreq/intelliactive/sampling_down_factor
-		echo "864000" > /sys/devices/system/cpu/cpufreq/intelliactive/sync_freq
-		echo "90" > /sys/devices/system/cpu/cpufreq/intelliactive/target_loads
-		echo "20000" > /sys/devices/system/cpu/cpufreq/intelliactive/timer_rate
-		echo "80000" > /sys/devices/system/cpu/cpufreq/intelliactive/timer_slack
-		echo "1344000,1344000,1344000,1344000,1344000,1344000,1344000,1344000" > /sys/devices/system/cpu/cpufreq/intelliactive/two_phase_freq
-		echo "960000" > /sys/devices/system/cpu/cpufreq/intelliactive/up_threshold_any_cpu_freq
-		echo "95" > /sys/devices/system/cpu/cpufreq/intelliactive/up_threshold_any_cpu_load
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "smartmax - standard" == "$2" ]; then
-		echo "475000" > /sys/devices/system/cpu/cpufreq/smartmax/awake_ideal_freq
-		echo "0" > /sys/devices/system/cpu/cpufreq/smartmax/boost_duration
-		echo "760000" > /sys/devices/system/cpu/cpufreq/smartmax/boost_freq
-		echo "0" > /sys/devices/system/cpu/cpufreq/smartmax/debug_mask
-		echo "80000" > /sys/devices/system/cpu/cpufreq/smartmax/down_rate
-		echo "1" > /sys/devices/system/cpu/cpufreq/smartmax/ignore_nice
-		echo "50000000" > /sys/devices/system/cpu/cpufreq/smartmax/input_boost_duration
-		echo "1" > /sys/devices/system/cpu/cpufreq/smartmax/io_is_busy
-		echo "80" > /sys/devices/system/cpu/cpufreq/smartmax/max_cpu_load
-		echo "50" > /sys/devices/system/cpu/cpufreq/smartmax/min_cpu_load
-		echo "150000" > /sys/devices/system/cpu/cpufreq/smartmax/ramp_down_step
-		echo "1" > /sys/devices/system/cpu/cpufreq/smartmax/ramp_up_during_boost
-		echo "300000" > /sys/devices/system/cpu/cpufreq/smartmax/ramp_up_step
-		echo "40000" > /sys/devices/system/cpu/cpufreq/smartmax/sampling_rate
-		echo "475000" > /sys/devices/system/cpu/cpufreq/smartmax/suspend_ideal_freq
-		echo "760000" > /sys/devices/system/cpu/cpufreq/smartmax/touch_poke_freq
-		echo "40000" > /sys/devices/system/cpu/cpufreq/smartmax/up_rate
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
 	if [ "interactive - standard" == "$2" ]; then
 		echo "19000 960000:39000 1248000:29000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
 		echo "0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
@@ -727,144 +682,23 @@ if [ "apply_governor_profile" == "$1" ]; then
 		busybox sync
 	fi
 
-	if [ "wheatley - standard" == "$2" ]; then
-		echo "5" > /sys/devices/system/cpu/cpufreq/wheatley/allowed_misses
-		echo "0" > /sys/devices/system/cpu/cpufreq/wheatley/ignore_nice_load
-		echo "0" > /sys/devices/system/cpu/cpufreq/wheatley/io_is_busy
-		echo "0" > /sys/devices/system/cpu/cpufreq/wheatley/powersave_bias
-		echo "1" > /sys/devices/system/cpu/cpufreq/wheatley/sampling_down_factor
-		echo "10000" > /sys/devices/system/cpu/cpufreq/wheatley/sampling_rate
-		echo "10000" > /sys/devices/system/cpu/cpufreq/wheatley/sampling_rate_min
-		echo "10000" > /sys/devices/system/cpu/cpufreq/wheatley/target_residency
-		echo "95" > /sys/devices/system/cpu/cpufreq/wheatley/up_threshold
-
-		busybox sleep 0.5s
-		busybox sync
-	fi	
-
-	if [ "zzmoove - standard" == "$2" ]; then
-		echo "1" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "zzmoove - battery" == "$2" ]; then
-		echo "4" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "zzmoove - optimal" == "$2" ]; then
-		echo "6" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "zzmoove - performance" == "$2" ]; then
-		echo "8" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "zzmoove - battery extreme yank" == "$2" ]; then
-		echo "3" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "zzmoove - battery yank" == "$2" ]; then
-		echo "2" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "zzmoove - insane" == "$2" ]; then
-		echo "9" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "zzmoove - battery plus" == "$2" ]; then
-		echo "5" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "zzmoove - moderate" == "$2" ]; then
-		echo "7" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "zzmoove - game" == "$2" ]; then
-		echo "10" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "zzmoove - relax" == "$2" ]; then
-		echo "11" > /sys/devices/system/cpu/cpufreq/zzmoove/profile_number
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-	if [ "pegasusq - standard" == "$2" ]; then
-		echo "5" > /sys/devices/system/cpu/cpufreq/pegasusq/down_differential
-		echo "2265600" > /sys/devices/system/cpu/cpufreq/pegasusq/freq_for_responsiveness
-		echo "37" > /sys/devices/system/cpu/cpufreq/pegasusq/freq_step
-		echo "0" > /sys/devices/system/cpu/cpufreq/pegasusq/ignore_nice_load
-		echo "0" > /sys/devices/system/cpu/cpufreq/pegasusq/io_is_busy
-		echo "2" > /sys/devices/system/cpu/cpufreq/pegasusq/sampling_down_factor
-		echo "50000" > /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate
-		echo "10000" > /sys/devices/system/cpu/cpufreq/pegasusq/sampling_rate_min
-		echo "85" > /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold
-		echo "40" > /sys/devices/system/cpu/cpufreq/pegasusq/up_threshold_at_min_freq
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-	
-	if [ "lionheart - standard" == "$2" ]; then
-		echo "40" > /sys/devices/system/cpu/cpufreq/lionheart/down_threshold
-		echo "5" > /sys/devices/system/cpu/cpufreq/lionheart/freq_step
-		echo "0" > /sys/devices/system/cpu/cpufreq/lionheart/ignore_nice_load
-		echo "1" > /sys/devices/system/cpu/cpufreq/lionheart/sampling_down_factor
-		echo "10000" > /sys/devices/system/cpu/cpufreq/lionheart/sampling_rate
-		echo "10000" > /sys/devices/system/cpu/cpufreq/lionheart/sampling_rate_min
-		echo "99" > /sys/devices/system/cpu/cpufreq/lionheart/up_threshold
-
-		busybox sleep 0.5s
-		busybox sync
-	fi
-
-
 	if [ "impulse - standard" == "$2" ]; then
 		echo "20000" > /sys/devices/system/cpu/cpufreq/impulse/above_hispeed_delay
-		echo "1" > /sys/devices/system/cpu/cpufreq/impulse/align_windows
+		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/align_windows
 		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/boost
-		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/boostpulse
 		echo "80000" > /sys/devices/system/cpu/cpufreq/impulse/boostpulse_duration
 		echo "99" > /sys/devices/system/cpu/cpufreq/impulse/go_hispeed_load
-		echo "20" > /sys/devices/system/cpu/cpufreq/impulse/go_lowspeed_load
-		echo "1766400" > /sys/devices/system/cpu/cpufreq/impulse/hispeed_freq
+		echo "5" > /sys/devices/system/cpu/cpufreq/impulse/go_lowspeed_load
+		echo "1555200" > /sys/devices/system/cpu/cpufreq/impulse/hispeed_freq
 		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/io_is_busy
 		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/max_freq_hysteresis
 		echo "80000" > /sys/devices/system/cpu/cpufreq/impulse/min_sample_time
 		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/powersave_bias
-		echo "95" > /sys/devices/system/cpu/cpufreq/impulse/target_loads
+		echo "90" > /sys/devices/system/cpu/cpufreq/impulse/target_loads
 		echo "20000" > /sys/devices/system/cpu/cpufreq/impulse/timer_rate
 		echo "80000" > /sys/devices/system/cpu/cpufreq/impulse/timer_slack
+		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/use_migration_notif
+		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/use_sched_load
 
 		busybox sleep 0.5s
 		busybox sync
@@ -930,6 +764,28 @@ if [ "apply_governor_profile_2" == "$1" ]; then
 		busybox sync
 	fi
 
+	if [ "impulse - standard" == "$2" ]; then
+		echo "20000" > /sys/devices/system/cpu/cpufreq/impulse/above_hispeed_delay
+		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/align_windows
+		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/boost
+		echo "80000" > /sys/devices/system/cpu/cpufreq/impulse/boostpulse_duration
+		echo "99" > /sys/devices/system/cpu/cpufreq/impulse/go_hispeed_load
+		echo "5" > /sys/devices/system/cpu/cpufreq/impulse/go_lowspeed_load
+		echo "1766400" > /sys/devices/system/cpu/cpufreq/impulse/hispeed_freq
+		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/io_is_busy
+		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/max_freq_hysteresis
+		echo "80000" > /sys/devices/system/cpu/cpufreq/impulse/min_sample_time
+		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/powersave_bias
+		echo "90" > /sys/devices/system/cpu/cpufreq/impulse/target_loads
+		echo "20000" > /sys/devices/system/cpu/cpufreq/impulse/timer_rate
+		echo "80000" > /sys/devices/system/cpu/cpufreq/impulse/timer_slack
+		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/use_migration_notif
+		echo "0" > /sys/devices/system/cpu/cpufreq/impulse/use_sched_load
+
+		busybox sleep 0.5s
+		busybox sync
+	fi
+	
 	exit 0
 fi
 
