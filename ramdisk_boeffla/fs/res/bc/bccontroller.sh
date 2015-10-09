@@ -735,7 +735,7 @@ if [ "apply_governor_profile_2" == "$1" ]; then
 		echo "40000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
 		echo "90 1248000:95 1800000:70" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
 		echo "10000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
-		echo "60000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
+		echo "80000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
 		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
 		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
 
