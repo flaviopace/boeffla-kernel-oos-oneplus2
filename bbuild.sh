@@ -10,10 +10,10 @@
 # Parameters to be configured manually
 #######################################
 
-BOEFFLA_VERSION="Boeffla-Kernel"
+BOEFFLA_VERSION="Unicondo_Boeffla-Kernel"
 EXTENDED_CMDLINE="androidboot.selinux=permissive"
 
-TOOLCHAIN="/opt/toolchains/aarch64-linux-android-4.9/bin/aarch64-linux-android-"
+TOOLCHAIN="/opt/toolchains/aarch64-linux-android-4.9-uber/bin/aarch64-linux-android-"
 
 COMPILE_DTB="y"
 MODULES_IN_SYSTEM="y"
@@ -45,7 +45,7 @@ ASSERT_10=""
 ASSERT_11=""
 ASSERT_12=""
 
-FINISH_MAIL_TO=""
+FINISH_MAIL_TO="flavio.pace@gmail.com"
 
 SMB_SHARE_KERNEL=""
 SMB_FOLDER_KERNEL=""
@@ -55,7 +55,7 @@ SMB_SHARE_BACKUP=""
 SMB_FOLDER_BACKUP=""
 SMB_AUTH_BACKUP=""
 
-NUM_CPUS="5"	# number of cpu cores used for build
+NUM_CPUS="2"	# number of cpu cores used for build
 
 
 #######################################
