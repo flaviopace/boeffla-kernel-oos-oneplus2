@@ -35,12 +35,12 @@ RECOVERY_DEVICE="/dev/block/bootdevice/by-name/recovery"
 # *******************
 
 if [ "lov_gov_profiles" == "$1" ]; then
-#	echo "interactive - battery;interactive - battery extreme;interactive - performance"
+	echo "interactive - battery;interactive - battery extreme;interactive - performance"
 	exit 0
 fi
 
 if [ "lov_gov_profiles_2" == "$1" ]; then
-#	echo "interactive - battery;interactive - battery extreme;interactive - performance"
+	echo "interactive - battery;interactive - battery extreme;interactive - performance"
 	exit 0
 fi
 
@@ -350,9 +350,9 @@ fi
 
 if [ "param_led" == "$1" ]; then
 	# LED speed min/max/steps
-	echo "0;12;1;"
+	echo "0;20;1;"
 	# LED brightness min/max/steps
-	echo "0;100;5"
+	echo "0;100;1"
 	exit 0
 fi
 
@@ -662,22 +662,63 @@ if [ "apply_governor_profile" == "$1" ]; then
 	fi
 	
 	if [ "interactive - battery" == "$2" ]; then
-		# tbd
+		echo "19000 960000:39000 1248000:29000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+		echo "0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
+		echo "0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
+		echo "" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse
+		echo "80000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
+		echo "98" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+		echo "768000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+		echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
+		echo "5000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
+		echo "5000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
+		echo "80 768000:95 864000:99" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+		echo "25000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
+		echo "80000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
+		echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif
+		echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
 
 		busybox sleep 0.5s
 		busybox sync
 	fi
 
 	if [ "interactive - battery extreme" == "$2" ]; then
-		# tbd
+		echo "19000 960000:39000 1248000:29000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+		echo "0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
+		echo "0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
+		echo "" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse
+		echo "80000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
+		echo "100" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+		echo "460800" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+		echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
+		echo "2500" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
+		echo "2500" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
+		echo "80 460800:95 672000:99" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+		echo "40000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
+		echo "80000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
+		echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif
+		echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
 
 		busybox sleep 0.5s
 		busybox sync
 	fi
 
 	if [ "interactive - performance" == "$2" ]; then
-		# tbd
-
+		echo "19000 960000:39000 1248000:29000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+		echo "0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/align_windows
+		echo "0" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
+		echo "" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse
+		echo "80000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
+		echo "80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+		echo "1344000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+		echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
+		echo "30000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
+		echo "30000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
+		echo "80 1344000:95 1478400:99" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+		echo "7000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
+		echo "80000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
+		echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif
+		echo "1" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
 		busybox sleep 0.5s
 		busybox sync
 	fi
@@ -735,7 +776,7 @@ if [ "apply_governor_profile_2" == "$1" ]; then
 		echo "40000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
 		echo "90 1248000:95 1800000:70" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
 		echo "10000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
-		echo "60000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
+		echo "80000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
 		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
 		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
 
@@ -744,21 +785,63 @@ if [ "apply_governor_profile_2" == "$1" ]; then
 	fi
 	
 	if [ "interactive - battery" == "$2" ]; then
-		# tbd
+		echo "19000 1400000:39000 1700000:19000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+		echo "0" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/align_windows
+		echo "0" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boost
+		echo "" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse
+		echo "80000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
+		echo "95" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
+		echo "864000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
+		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
+		echo "20000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
+		echo "10000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
+		echo "90 864000:95 1500000:70" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+		echo "25000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
+		echo "80000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
+		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
+		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
 
 		busybox sleep 0.5s
 		busybox sync
 	fi
 
 	if [ "interactive - battery extreme" == "$2" ]; then
-		# tbd
+		echo "19000 1400000:39000 1700000:19000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+		echo "0" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/align_windows
+		echo "0" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boost
+		echo "" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse
+		echo "80000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
+		echo "100" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
+		echo "480000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
+		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
+		echo "10000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
+		echo "5000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
+		echo "90 633600:95 1100000:70" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+		echo "40000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
+		echo "80000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
+		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
+		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
 
 		busybox sleep 0.5s
 		busybox sync
 	fi
 
 	if [ "interactive - performance" == "$2" ]; then
-		# tbd
+		echo "19000 1400000:39000 1700000:19000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+		echo "0" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/align_windows
+		echo "0" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boost
+		echo "" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse
+		echo "80000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/boostpulse_duration
+		echo "80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
+		echo "1632000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
+		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
+		echo "120000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
+		echo "60000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
+		echo "90 1536000:95 2000000:70" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+		echo "7000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
+		echo "80000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_slack
+		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif
+		echo "1" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load
 
 		busybox sleep 0.5s
 		busybox sync
